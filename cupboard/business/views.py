@@ -5,6 +5,9 @@ from django.db.models import Sum
 
 # Create your views here.
 
+def index(request):
+    return render(request, 'index.html')
+
 def create_invoice(request):
     if request.method == 'POST':
         form = InvoiceForm(request.POST)
