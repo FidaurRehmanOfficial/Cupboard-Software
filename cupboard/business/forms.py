@@ -4,7 +4,7 @@ from .models import Invoice, InventoryItem, Expense, Payment
 class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
-        fields = ['customer_name', 'customer_email', 'due_date', 'total_amount']
+        fields = ['customer_name', 'due_date', 'total_amount'] # , 'customer_email'
 class InventoryItemForm(forms.ModelForm):
     class Meta:
         model = InventoryItem

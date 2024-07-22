@@ -3,12 +3,11 @@ from django.db import models
 # Create your models here.
 class Invoice(models.Model):
     customer_name = models.CharField(max_length=100)
-    customer_email = models.EmailField()
     invoice_date = models.DateField(auto_now_add=True)
     due_date = models.DateField()
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     paid = models.BooleanField(default=False)
-
+#customer_email = models.EmailField()
 class InventoryItem(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField()
@@ -25,3 +24,4 @@ class Payment(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_date = models.DateField(auto_now_add=True)
     method = models.CharField(max_length=50)
+    
