@@ -21,6 +21,8 @@ from business.views import index
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', index, name='index'),
+    path('index/', index, name='index'),
     path('business/', include('business.urls')),
+    path('', include('ecommerce.urls')),
+    path('admin-panel/', include('admin_panel.urls')),
 ]
