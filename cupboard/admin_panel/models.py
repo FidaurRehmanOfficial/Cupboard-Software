@@ -54,3 +54,11 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'Payment {self.id} - {self.amount}'
+class Vendor(models.Model):
+    name = models.CharField(max_length=255)
+    contact = models.CharField(max_length=255)
+    address = models.TextField()
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name

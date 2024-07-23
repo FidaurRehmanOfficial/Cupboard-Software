@@ -131,3 +131,38 @@ def delete_payment(request, pk):
     payment = get_object_or_404(Payment, pk=pk)
     payment.delete()
     return redirect('manage_payments')
+def settings(request):
+    return render(request, 'admin_panel/settings.html')
+
+def manage_vendors(request):
+    vendors = Vendor.objects.all()
+    return render(request, 'admin_panel/manage_vendors.html', {'vendors': vendors})
+
+def add_vendor(request):
+    if request.method == 'POST':
+        form = VendorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_vendors')
+    else:
+        form = VendorForm()
+    return render(request, 'admin_panel/vendor_form.html', {'form': form})
+
+def edit_vendor(request, pk):
+    vendor = get_object_or_404(Vendor, pk=pk)
+    if request.method == 'POST':
+        form = VendorForm(request.POST, instance=vendor)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_vendors')
+    else:
+        form = VendorForm(instance=vendor)
+    return render(request, 'admin_panel/vendor_form.html', {'form': form})
+
+def delete_vendor(request, pk):
+    vendor = get_object_or_404(Vendor, pk=pk)
+    vendor.delete()
+    return redirect('manage_vendors')
+
+def manage_parties(request):
+    return redirect( 'manage_parties.html/')

@@ -21,4 +21,10 @@ urlpatterns = [
     path('payments/new/', views.add_payment, name='add_payment'),
     path('payments/<int:pk>/edit/', views.edit_payment, name='edit_payment'),
     path('payments/<int:pk>/delete/', views.delete_payment, name='delete_payment'),
+    path('settings/', views.settings, name='settings'),
+    path('vendors/', views.manage_vendors, name='manage_vendors'),
+    path('vendors/new/', views.add_vendor, name='add_vendor'),
+    path('vendors/<int:pk>/edit/', views.edit_vendor, name='edit_vendor'),
+    path('vendors/<int:pk>/delete/', views.delete_vendor, name='delete_vendor'),
+    path('parties', views.manage_parties, name='manage_parties'),
 ]

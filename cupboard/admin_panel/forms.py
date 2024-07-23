@@ -17,4 +17,8 @@ class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
         fields = ['customer', 'amount', 'date', 'mode']
+class VendorForm(forms.ModelForm):
+    class Meta:
+        model = Vendor
+        fields = ['name', 'contact', 'address', 'email']
 
