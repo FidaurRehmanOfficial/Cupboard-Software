@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cupboard |Manage Invoices</title>
+  <title>Cupboard |Home</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/cupboard/templates/style.css">
 </head>
@@ -28,16 +28,16 @@
                 <a class="nav-link" href="{% url 'manage_inventory' %}">Inventory</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Expenses</a>
+                <a class="nav-link" href="{% url 'manage_expenses' %}">Expenses</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Reports</a>
+                <a class="nav-link" href="{% url 'reports' %}">Reports</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">GST Reports</a>
+                <a class="nav-link" href="{% url 'manage_gst_reports' %}">GST Reports</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Payments</a>
+                <a class="nav-link" href="{% url 'manage_expenses' %}">Payments</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="">Settings</a>
@@ -52,16 +52,13 @@
   <header class="App-header">
     <h1>Welcome to Cupboard Software</h1>
     <h1>Welcome Admin Panel!</h1>
-    <h1>Manage Invoices</h1>
+    <h1>Manage GST Reports</h1>
   </header>
  </div>
-<a href="{% url 'create_invoice' %}">Create New Invoice</a>
 <ul>
-    {% for invoice in invoices %}
+    {% for gst_invoice in gst_invoices %}
         <li>
-            Invoice {{ invoice.id }} - {{ invoice.customer.name }}
-            <a href="{% url 'edit_invoice' invoice.id %}">Edit</a>
-            <a href="{% url 'delete_invoice' invoice.id %}">Delete</a>
+            GST Invoice {{ gst_invoice.invoice.id }} - {{ gst_invoice.gst_amount }}
         </li>
     {% endfor %}
 </ul>
