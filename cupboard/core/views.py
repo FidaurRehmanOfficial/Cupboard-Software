@@ -34,7 +34,7 @@ class RoleBasedLoginView(LoginView):
     def get_success_url(self):
         user = self.request.user
         if user.role == 'admin':
-            return '/admin-panel/'
+            return '/admin_panel/'
         elif user.role == 'shopkeeper':
             return '/'
         else:

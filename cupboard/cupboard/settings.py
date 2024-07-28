@@ -57,7 +57,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'admin-panel.middleware.RoleRequiredMiddleware',   
+    'admin_panel.middleware.RoleRequiredMiddleware',   
 ]
 
 AUTH_USER_MODEL = 'core.User'

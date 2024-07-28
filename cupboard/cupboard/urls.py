@@ -27,7 +27,7 @@ urlpatterns = [
     path('index/', index, name='index'),
     path('business/', include('business.urls')),
     path('', include('ecommerce.urls'), name='shopkeeper_dashboard'),
-    path('admin-panel/', include('admin_panel.urls')),
+    path('admin_panel/', include('admin_panel.urls')),
     path('login/', RoleBasedLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]

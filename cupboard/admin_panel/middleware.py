@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import HttpResponseForbidden
 
@@ -17,12 +17,42 @@ class RoleRequiredMiddleware:
         # Define role-based access for different paths
         role_paths = {
             'admin': [
-                '/admin_dashboard/',
-                # Add other admin paths here
+                '/',
+                '/admin/',
+                '/admin_panel/',
+                '/invoices/',
+                '/invoices/new/',
+                '/invoices/<int:pk>/edit/',
+                '/invoices/<int:pk>/delete/',
+                '/inventory/',
+                '/inventory1/',
+                '/inventory/new/',
+                '/inventory/<int:pk>/edit/',
+                '/inventory/<int:pk>/delete/',
+                '/expenses/',
+                '/expenses/new/',
+                '/expenses/<int:pk>/edit/',
+                '/expenses/<int:pk>/delete/',
+                '/reports/',
+                '/gst_reports/',
+                '/payments/',
+                '/payments/new/',
+                '/payments/<int:pk>/edit/',
+                '/payments/<int:pk>/delete/',
+                '/settings/',
+                '/vendors/',
+                '/vendors/new/',
+                '/vendors/<int:pk>/edit/',
+                '/vendors/<int:pk>/delete/',
+                '/parties',
+                '/Customers/',
+                '/Customers/new/',
+                '/Customers/<int:pk>/edit/',
+                '/Customers/<int:pk>/delete/',
+                        
             ],
             'shopkeeper': [
-                '/shopkeeper_dashboard/',
-                '/inventory/',
+                '/',
                 # Add other shopkeeper paths here
             ],
             'manager': [
@@ -36,4 +66,4 @@ class RoleRequiredMiddleware:
             if request.user.role == role and request.path in paths:
                 return None
 
-        return HttpResponseForbidden("You do not have permission to view this page.")
+        return HttpResponseForbidden(render(request, 'no_permission.html'))
