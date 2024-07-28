@@ -27,4 +27,12 @@ urlpatterns = [
     path('vendors/<int:pk>/edit/', views.edit_vendor, name='edit_vendor'),
     path('vendors/<int:pk>/delete/', views.delete_vendor, name='delete_vendor'),
     path('parties', views.manage_parties, name='manage_parties'),
+    path('Customers/', views.manage_Customers, name='manage_Customers'),
+    path('Customers/new/', views.add_Customer, name='add_Customer'),
+    path('Customers/<int:pk>/edit/', views.edit_Customer, name='edit_Customer'),
+    path('Customers/<int:pk>/delete/', views.delete_Customer, name='delete_Customer'),
 ]
+"""     path('users/', views.manage_users, name='manage_users'),
+    path('users/new/', views.add_user, name='add_user'),
+    path('users/<int:pk>/edit/', views.edit_user, name='edit_user'),
+    path('users/<int:pk>/delete/', views.delete_user, name='delete_user'), """

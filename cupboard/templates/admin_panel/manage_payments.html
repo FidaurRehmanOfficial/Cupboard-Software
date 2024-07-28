@@ -59,7 +59,7 @@
  <ul>
      {% for payment in payments %}
          <li>
-             {{ payment.customer }} - {{ payment.amount }}
+             {{ payment.Customer }} - {{ payment.amount }}
              <a href="{% url 'edit_payment' payment.id %}">Edit</a>
              <a href="{% url 'delete_payment' payment.id %}">Delete</a>
          </li>

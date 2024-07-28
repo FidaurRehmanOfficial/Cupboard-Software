@@ -1,14 +1,3 @@
-<h1>Manage Vendors</h1>
-<a href="{% url 'add_vendor' %}">Add New Vendor</a>
-<ul>
-    {% for vendor in vendors %}
-        <li>
-            {{ vendor.name }}
-            <a href="{% url 'edit_vendor' vendor.id %}">Edit</a>
-            <a href="{% url 'delete_vendor' vendor.id %}">Delete</a>
-        </li>
-    {% endfor %}
-</ul>
 <!DOCTYPE html>
  <html lang="en">
 <head>

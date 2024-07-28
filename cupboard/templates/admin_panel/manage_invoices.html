@@ -59,7 +59,7 @@
 <ul>
     {% for invoice in invoices %}
         <li>
-            Invoice {{ invoice.id }} - {{ invoice.customer.name }}
+            Invoice {{ invoice.id }} - {{ invoice.Customer.name }}
             <a href="{% url 'edit_invoice' invoice.id %}">Edit</a>
             <a href="{% url 'delete_invoice' invoice.id %}">Delete</a>
         </li>

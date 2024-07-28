@@ -163,6 +163,65 @@ def delete_vendor(request, pk):
     vendor = get_object_or_404(Vendor, pk=pk)
     vendor.delete()
     return redirect('manage_vendors')
+def manage_Customers(request):
+    Customers = Customer.objects.all()
+    return render(request, 'admin_panel/manage_Customers.html', {'Customers': Customers})
+
+def add_Customer(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_Customers')
+    else:
+        form = CustomerForm()
+    return render(request, 'admin_panel/Customer_form.html', {'form': form})
+
+def edit_Customer(request, pk):
+    Customer = get_object_or_404(Customer, pk=pk)
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=Customer)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_Customers')
+    else:
+        form = CustomerForm(instance=Customer)
+    return render(request, 'admin_panel/Customer_form.html', {'form': form})
+
+def delete_Customer(request, pk):
+    Customer = get_object_or_404(Customer, pk=pk)
+    Customer.delete()
+    return redirect('manage_Customers')
 
 def manage_parties(request):
-    return redirect( 'manage_parties.html/')
+    return render(request, 'admin_panel/manage_parties.html')
+
+""" def manage_users(request):
+    users = CustomUser.objects.all()
+    return render(request, 'admin_panel/manage_users.html', {'users': users})
+
+def add_user(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_users')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'admin_panel/user_form.html', {'form': form})
+
+def edit_user(request, pk):
+    user = get_object_or_404(CustomUser, pk=pk)
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_users')
+    else:
+        form = CustomUserChangeForm(instance=user)
+    return render(request, 'admin_panel/user_form.html', {'form': form})
+
+def delete_user(request, pk):
+    user = get_object_or_404(CustomUser, pk=pk)
+    user.delete()
+    return redirect('manage_users') """

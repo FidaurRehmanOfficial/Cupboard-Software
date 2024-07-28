@@ -1,5 +1,6 @@
 from django.db import models
 from core.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Customer(models.Model):
@@ -7,9 +8,11 @@ class Customer(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     address = models.TextField()
+    def __str__(self):
+        return self.name  
 
 class Invoice(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    Customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     due_date = models.DateField()
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -17,7 +20,7 @@ class Invoice(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Invoice {self.id} - {self.customer.name}'
+        return f'Invoice {self.id} - {self.Customer.name}'
 class Product(models.Model):
     name = models.CharField(max_length=255)
     sku = models.CharField(max_length=50, unique=True)
@@ -47,7 +50,7 @@ class GSTInvoice(models.Model):
     def __str__(self):
         return f'GST Invoice {self.invoice.id}'
 class Payment(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    Customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     mode = models.CharField(max_length=50)
@@ -62,3 +65,16 @@ class Vendor(models.Model):
 
     def __str__(self):
         return self.name
+
+
+  
+""" class CustomUser(AbstractUser):
+    ROLE_CHOICES = (
+        ('admin', 'Admin'),
+        ('shopkeeper', 'Shopkeeper'),
+        ('manager', 'Manager'),
+    )
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+
+    def __str__(self):
+        return self.username """
