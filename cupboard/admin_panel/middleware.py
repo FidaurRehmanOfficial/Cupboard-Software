@@ -11,13 +11,22 @@ class RoleRequiredMiddleware:
         return response
 
     def process_view(self, request, view_func, view_args, view_kwargs):
+        # Allow access to the login page for unauthenticated users
         if not request.user.is_authenticated:
-            return redirect('login')
+            if request.path != reverse('login'):
+                return redirect('login')
+            return None
+        if request.path == reverse('logout'):
+            return None
 
         # Define role-based access for different paths
         role_paths = {
             'admin': [
                 '/',
+                '/logout/',
+                '/admin/',
+                '/admin/logout/',
+                '/admin/',
                 '/admin/',
                 '/admin_panel/',
                 '/invoices/',
@@ -53,6 +62,7 @@ class RoleRequiredMiddleware:
             ],
             'shopkeeper': [
                 '/',
+                '/logout/',
                 # Add other shopkeeper paths here
             ],
             'manager': [

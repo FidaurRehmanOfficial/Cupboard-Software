@@ -15,30 +15,23 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/business/invoices/">Invoices</a>
+                <a class="nav-link" href="">Categories</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">Inventory</a>
+                <a class="nav-link" href="/">Products</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/">Expenses</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/">Reports</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/">GST Reports</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/">Payments</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/">Settings</a>
-              </li>
-        </ul>
+            </ul>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <form id="logout-form" action="{% url 'logout' %}" method="post" class="form-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-primary nav-link">Logout</button>
+                    </form>
+                </li>
+            </ul>
       </div>
     </nav>
   </header>
