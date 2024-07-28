@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     "business",
     "core",
     "admin_panel",
-    #"admin",
     "ecommerce",
 ]
 
@@ -56,9 +55,15 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'admin-panel.middleware.RoleRequiredMiddleware',   
 ]
 
+AUTH_USER_MODEL = 'core.User'
 ROOT_URLCONF = "cupboard.urls"
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
 
 TEMPLATES = [
     {

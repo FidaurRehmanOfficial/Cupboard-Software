@@ -1,8 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .forms import *
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView
+from .decorators import role_required
 
 # Create your views here.
+@role_required(['admin'])
 def admin_dashboard(request):
     return render(request, 'admin_panel/admin_dashboard.html')
 
@@ -42,6 +47,8 @@ def delete_invoice(request, pk):
 def manage_inventory(request):
     products = Product.objects.all()
     return render(request, 'admin_panel/manage_inventory.html', {'products': products})
+class ManageInventoryView(LoginRequiredMixin, TemplateView):
+    template_name = 'admin_panel/manage_inventory.html'
 
 def add_product(request):
     if request.method == 'POST':
@@ -225,3 +232,5 @@ def delete_user(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
     user.delete()
     return redirect('manage_users') """
+
+        
